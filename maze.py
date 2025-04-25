@@ -17,6 +17,8 @@ window = display.set_mode((720, 500))
 display.set_caption('Resident of walking evil of us within a maze')
 background = transform.scale(image.load('background.jpg'), (720, 500))
 
+#making SuperClass
+
 class GameSprite(sprite.Sprite):
     def __init__(self, filename, w, h, speed, x, y):
         super().__init__()
@@ -33,6 +35,8 @@ class GameSprite(sprite.Sprite):
                     (self.rect.x, self.rect.y)
                     )
 
+#making class for player
+
 class Player(GameSprite):
     def update(self):
         keys_pressed = key.get_pressed()
@@ -44,6 +48,8 @@ class Player(GameSprite):
             self.rect.y -= 1
         if keys_pressed[K_s] and self.rect.y < 500:
             self.rect.y += 1
+
+#making class for moving villain
 
 class Enemy(GameSprite):
     direction = 'left'
@@ -58,6 +64,8 @@ class Enemy(GameSprite):
         if self.direction == 'right':
             self.rect.x += self.speed
 
+#making class for static wall
+
 class Wall(sprite.Sprite):
     def __init__(self, width, height, x, y):
         super().__init__()
@@ -69,6 +77,8 @@ class Wall(sprite.Sprite):
 
     def draw_wall(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
+
+#making users for classes
 
 player = Player('hero.png', 75, 75, 1, 20, 20)
 villian = Enemy('cyborg.png', 50, 50, 1, 595, 250)
